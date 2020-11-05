@@ -1,24 +1,80 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Suspense, lazy } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import UseRedux from "./redux/store/store";
+
+const StateComponent = lazy(() => import("./examples/State"));
+const Home = lazy(() => import("./examples/Home"));
+const EffectComponent = lazy(() => import("./examples/Effect"));
+const RefComponent = lazy(() => import("./examples/Ref"));
+const MemoComponent = lazy(() => import("./examples/Memo"));
+const CollBackComponent = lazy(() => import("./examples/Collback"));
+const ContextComponent = lazy(() => import("./examples/Context"));
+const Users = lazy(() => import("./page/Users"));
 
 function App() {
+  console.log(process.env.NODE_ENV);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <header className="app-header">Hooks React</header>
+      <Router>
+        <div className="main">
+          <nav className="sidebar">
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/state">useState</Link>
+              </li>
+              <li>
+                <Link to="/effect">useEffect</Link>
+              </li>
+              <li>
+                <Link to="/ref">useRef</Link>
+              </li>
+              <li>
+                <Link to="/memo">useMemo</Link>
+              </li>
+              <li>
+                <Link to="/collback">useCollback</Link>
+              </li>
+              <li>
+                <Link to="/context">useContext</Link>
+              </li>
+              <li>
+                <Link to="/users">users</Link>
+              </li>
+            </ul>
+          </nav>
+          <UseRedux>
+            <Suspense fallback={<div>Завантаження...</div>}>
+              <Switch>
+                <Route path="/state" component={StateComponent}></Route>
+                <Route path="/effect">
+                  <EffectComponent />
+                </Route>
+                <Route path="/ref">
+                  <RefComponent />
+                </Route>
+                <Route path="/memo">
+                  <MemoComponent />
+                </Route>
+                <Route path="/collback">
+                  <CollBackComponent />
+                </Route>
+                <Route path="/context">
+                  <ContextComponent />
+                </Route>
+                <Route path="/users">
+                  <Users />
+                </Route>
+                <Route path="/" component={Home}></Route>
+              </Switch>
+            </Suspense>
+          </UseRedux>
+        </div>
+      </Router>
     </div>
   );
 }
