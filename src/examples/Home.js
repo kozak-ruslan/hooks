@@ -7,7 +7,6 @@ function Home() {
       <div>test rebase</div>
       <div>RK-1</div>
       <div>RK-2</div>
-      <div>RK-3</div>
     </>
   );
 }
