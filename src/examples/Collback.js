@@ -14,11 +14,11 @@ const CollBackComponent = () => {
   }, [colored]);
 
   const generateItems = useCallback(() => {
-    console.log("generateItems");
+    console.log("render generateItems useCallback");
     const arr = new Array(count).fill("").map((val, i) => `element ${i + 1}`);
     console.log(arr);
     return arr;
-  }, [count]);
+  }, [count]);//, [count]
 
   return (
     <>

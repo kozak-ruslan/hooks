@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import UseRedux from "./redux/store/store";
 
+
 const StateComponent = lazy(() => import("./examples/State"));
 const Home = lazy(() => import("./examples/Home"));
 const EffectComponent = lazy(() => import("./examples/Effect"));
@@ -11,9 +12,9 @@ const MemoComponent = lazy(() => import("./examples/Memo"));
 const CollBackComponent = lazy(() => import("./examples/Collback"));
 const ContextComponent = lazy(() => import("./examples/Context"));
 const Users = lazy(() => import("./page/Users"));
+const Memo = lazy(() => import("./page/Memo"));
 
 function App() {
-  console.log(process.env.NODE_ENV);
   return (
     <div className="app">
       <header className="app-header">Hooks React</header>
@@ -45,6 +46,9 @@ function App() {
               <li>
                 <Link to="/users">users</Link>
               </li>
+              <li>
+                <Link to="/memoPage">memo-page</Link>
+              </li>
             </ul>
           </nav>
           <UseRedux>
@@ -69,6 +73,10 @@ function App() {
                 <Route path="/users">
                   <Users />
                 </Route>
+                <Route path="/memoPage">
+                  <Memo />
+                </Route>
+                
                 <Route path="/" component={Home}></Route>
               </Switch>
             </Suspense>
