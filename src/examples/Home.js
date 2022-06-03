@@ -8,7 +8,6 @@ function Home() {
       <div>RK-1</div>
       <div>RK-1 01</div>
       <div>RK-2</div>
-      <div>RK-3</div>
     </>
   );
 }
